@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4>${head}</h4>
+	<p>
+		${description1}<a href='${descriptionUrl}'>${descriptionUrl}</a>${description2}
+	</p>
+	<h5>
+		${description3}
+		<#list syslist as sys> ${sys}/ </#list>
+
+		${description4}
+	</h5>
+	<p>
+		${description6} ${date} ${description7}<br>
+	<h5>
+		<u>Impacted Systems:</u>
+	</h5>
+	<#list syslist as sys>
+	<li>${sys}</li>
+	</#list>
+	<h5>
+		<u>Start Time:</u><br>
+	</h5>
+	<#list timeMap?keys as key>
+	<li>${timeMap[key]} ${key}</li>
+	</#list>
+	<h5>
+		<u>Expected Duration:</u><br>
+	</h5>
+	<p>${spendTime}
+	<h5>
+		<u>Highlight:</u><br>
+	</h5>
+	<li>${h}</li>
+</body>
+</html>
