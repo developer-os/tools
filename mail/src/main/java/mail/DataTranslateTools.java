@@ -1,34 +1,28 @@
 package mail;
 
-
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
+import mail.tools.enums.ZoneIdEnum;
 
 /**
  * @author rchen7
- *http://blog.csdn.net/Cwind017/article/details/41021257
+ *
  */
 public class DataTranslateTools {
 	public static void main(String[] args) {
-		System.out.println("ss");
-//		getDefaultTimeId("",null);
-		getGlobalTime("",null);
+		System.out.println(getGlobalTime(2, "2018/02/01 12:00", "yyy-MM-dd HH:mm:ss"));
+		System.out.println(getGlobalTime(1, "2018/02/01 12:00", "yyy-MM-dd HH:mm:ss"));
+		System.out.println(getGlobalTime(3, "2018/02/01 12:00", "yyy-MM-dd HH:mm:ss"));
 	}
-	
-	public static String getGlobalTime(String strZones,Date date ) {
-		TimeZone timeZone = TimeZone.getTimeZone("GMT+5:50");
-		Calendar calendar = Calendar.getInstance(timeZone);
-		System.out.println(calendar.getTime());
-		return "";
+
+	public static String getGlobalTime(int zoneNum, String strData, String formatStr) {
+		TimeZone timeZone = TimeZone.getTimeZone(ZoneIdEnum.getZoneIdByNum(zoneNum));
+		Date date = new Date(strData);
+		SimpleDateFormat df = new SimpleDateFormat(formatStr);
+		df.setTimeZone(timeZone);
+		return df.format(date);
 	}
-	
-	public static String getDefaultTimeId(String strZones,Date date ) {
-		TimeZone timeZone = TimeZone.getDefault();
-		for(String strZone:timeZone.getAvailableIDs()) {
-			System.out.println(strZone);
-		}
-		return "";
-	}
+
 }
